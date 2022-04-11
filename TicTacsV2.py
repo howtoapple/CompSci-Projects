@@ -6,40 +6,39 @@ one = "_"; two ="_"; three ="_"; four ="_"; five = "_"; six ="_"; seven = ""; ei
 
 
 def playerMove():
+    global one, two, three, four, five, six, seven, eight, nine
     userin = int(input("Enter your position [1 - 9]"))
-    if userin == 1 and one != "O":
+    if userin == 1 and one != "O" or "X":
         one = "X"
-        playerMoves.append()
-    elif userin == 2 and two != "O":
+        print("Hello World")
+    elif userin == 2 and two != "O" or "X":
         two = "X"
-        playerMoves.append()
-    elif userin == 3 and three != "O":
+
+    elif userin == 3 and three != "O" or "X":
         three = "X"
-        playerMoves.append()
-    elif userin == 4 and four != "O":
+
+    elif userin == 4 and four != "O" or "X":
         four = "X"
-        playerMoves.append()
-    elif userin == 5 and five != "O":
+
+    elif userin == 5 and five != "O" or "X":
         five = "X"
-        playerMoves.append()
-    elif userin == 6 and six != "O":
+
+    elif userin == 6 and six != "O" or "X":
         six = "X"
-    elif userin == 7 and seven != "O":
+    elif userin == 7 and seven != "O" or "X":
         seven = "X"
-    elif userin == 8 and eight != "O":
+    elif userin == 8 and eight != "O" or "X":
         eight = "X"
-    elif userin == 9 and nine != "0":
+    elif userin == 9 and nine != "O" or "X":
         nine = "X"
     else:
         print('Invalid Input')
 def board():
-   print(f"_{one}_|_{two}_|_{three}_\n_{four}_|_{five}_|_{six}_\n {seven} | {eight} | {nine}\n")
-
-
-
-
+   print(f"_{one}_|_{two}_|_{three}_\n_{four}_|_{five}_|_{six}_\n {seven}  | {eight}  | {nine}\n")
 
 board()
 
-
-user = input("What is your name?")
+user = input("What is your name?\n")
+while play == True:
+    playerMove()
+    board()
