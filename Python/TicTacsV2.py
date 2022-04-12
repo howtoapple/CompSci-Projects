@@ -1,36 +1,51 @@
 import random
 
-play = 1
+play = True
 playerMoves = []
 one = "_"; two ="_"; three ="_"; four ="_"; five = "_"; six ="_"; seven = ""; eight =""; nine =""
-
 
 def playerMove():
     global one, two, three, four, five, six, seven, eight, nine
     userin = int(input("Enter your position [1 - 9]"))
-    if userin == 1 and one != "O" or "X":
-        one = "X"
-        print("Hello World")
-    elif userin == 2 and two != "O" or "X":
-        two = "X"
+    if userin == 1:
+        print(one)
+        if one != "X" or two != "O":
+            one = "X"
+            print("Hello")
+        else:
+            print("Existing Symbol")
+    elif userin == 2:
+        if two != "X" or two != "O":
+            two = "X"
+        else:
+            print("Existing Symbol")
+    elif userin == 3:
+        if three != "X":
+            three = "X"
+        else: 
+            print("Existing Symbol")
 
-    elif userin == 3 and three != "O" or "X":
-        three = "X"
+    elif userin == 4:
+        if four != "X":
+            four = "X"
 
-    elif userin == 4 and four != "O" or "X":
-        four = "X"
+    elif userin == 5:
+        if five != "X":
+            five = "X"
 
-    elif userin == 5 and five != "O" or "X":
-        five = "X"
+    elif userin == 6:
+        if six != "X":
+            six = "X"
 
-    elif userin == 6 and six != "O" or "X":
-        six = "X"
-    elif userin == 7 and seven != "O" or "X":
-        seven = "X"
-    elif userin == 8 and eight != "O" or "X":
-        eight = "X"
-    elif userin == 9 and nine != "O" or "X":
-        nine = "X"
+    elif userin == 7:
+        if seven != "X":
+            seven = "X"
+    elif userin == 8:
+        if eight != "X":
+            eight = "X"
+    elif userin == 9:
+        if nine != "X":
+            nine = "X"
     else:
         print('Invalid Input')
 def board():
