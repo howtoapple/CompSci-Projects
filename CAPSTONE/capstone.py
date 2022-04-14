@@ -1,1 +1,1 @@
-#Man thats crazy
+print("""""")
