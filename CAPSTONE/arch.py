@@ -4,6 +4,12 @@ import os, time
 user = input("What is your name?")
 cont="";term=""
 
+def linux_cmd():
+    while term == "pacman -Syu":
+        print(":: Syncronizing package databases...")
+        time.sleep(1)
+        print("archlinux_repo\n archlinux_repo_3party")
+
 def interface():
     global cont, term
     cont = input("What would you like to do next?\n [P] Play 'Content Not Included'\n [T] Open Terminal\n [S] Shutdown");cont=cont.upper()
@@ -31,7 +37,12 @@ def interface():
 ooooooooo.                     -ooooooooo
 
     """)
+    
         term = input(f"[{user}@DefaultSystem ~]$ ")
+
+
+        cont = input("\nWhat would you like to do next?\n [P] Play 'Content Not Included'\n [T] Open Terminal\n [S] Shutdown\n");cont=cont.upper()
+        continue
     if cont =="P":
         os.system('clear')
         import ContentNotIncluded
