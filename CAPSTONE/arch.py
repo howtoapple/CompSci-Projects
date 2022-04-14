@@ -1,5 +1,44 @@
 #Arch?
-import os
+import os, time
+
+user = input("What is your name?")
+cont="";term=""
+
+def interface():
+    global cont, term
+    cont = input("What would you like to do next?\n [P] Play 'Content Not Included'\n [T] Open Terminal\n [S] Shutdown");cont=cont.upper()
+
+    while term == "" and cont=="T":
+        print(f"""                    /-
+                   ooo:
+                  yoooo/
+                 yooooooo
+                yooooooooo
+               yooooooooooo
+             .yooooooooooooo                GenicStudios Presents...
+            .oooooooooooooooo
+           .oooooooarcoooooooo              ArchLinux
+          .ooooooooo-oooooooooo             ---------------------- 
+         .ooooooooo-  oooooooooo            The Video Game
+        :ooooooooo.    :ooooooooo           ----------------------
+       :ooooooooo.      :ooooooooo          Created with <3
+      :oooarcooo         .oooarcooo         Kernal: 5.16.5-arch
+     :ooooooooy           .ooooooooo        Terminal: Content Not Included
+    :ooooooooo   /ooooooooooooooooooo       
+   :ooooooooo      .-ooooooooooooooooo.   
+  ooooooooo-             -ooooooooooooo.  
+ ooooooooo-                 .-oooooooooo. 
+ooooooooo.                     -ooooooooo
+
+    """)
+        term = input(f"[{user}@DefaultSystem ~]$ ")
+    if cont =="P":
+        os.system('clear')
+        import ContentNotIncluded
+    else:
+        exit()
+
+
 print("""
 
 
@@ -31,28 +70,12 @@ print("""
   `'.:::::::::::88888888888.88:::::::::'
 miK     `':::_:' -- '' -'-' `':_::::'`""")
 
-distro = input("Select your Distro!\n [A] Arch\n [U] Ubuntu\n [M] Manjaro\n [M] Mint\n");distro=distro.upper()
+inst = input("Proceed with Install?\n [Y] [N]? ");inst=inst.upper()
 
-if distro == "A":
+if inst == "Y":
     os.system('clear')
-    print("""                    /-
-                   ooo:
-                  yoooo/
-                 yooooooo
-                yooooooooo
-               yooooooooooo
-             .yooooooooooooo                GenicStudios Presents...
-            .oooooooooooooooo
-           .oooooooarcoooooooo              ArchLinux
-          .ooooooooo-oooooooooo             ---------------------- 
-         .ooooooooo-  oooooooooo            The Video Game
-        :ooooooooo.    :ooooooooo           ----------------------
-       :ooooooooo.      :ooooooooo          Created with <3
-      :oooarcooo         .oooarcooo         Kernal: 5.16.5-arch
-     :ooooooooy           .ooooooooo        Terminal: Content Not Included
-    :ooooooooo   /ooooooooooooooooooo       
-   :ooooooooo      .-ooooooooooooooooo.   
-  ooooooooo-             -ooooooooooooo.  
- ooooooooo-                 .-oooooooooo. 
-ooooooooo.                     -ooooooooo  
-""")
+    print("Processing...")
+    time.sleep(5);print("Download complete!\nYou now have the sudden urge to tell everyone that you use Arch")
+    interface();
+elif inst == "N":
+    exit()
