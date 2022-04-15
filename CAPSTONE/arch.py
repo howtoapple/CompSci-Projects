@@ -2,13 +2,31 @@
 import os, time
 
 user = input("What is your name?")
-cont="";term=""
+cont="";term="";clear = os.system('clear')
+
+def inst_bar():
+    global prog
+    prog =" community             256.0 KiB   816 KiB/s 00:01 [---Co o  o  o  o  o  o  ]  21%"
+    print(prog);time.sleep(1);clear
+    prog =" community             624.0 KiB   957 KiB/s 00:02 [--------Co  o  o  o  o  ]  36%"
+    print(prog);time.sleep(1);clear
+    prog =" community             1245.0 KiB   892 KiB/s 00:03 [----------------Co  o  ]  62%"
+    print(prog);time.sleep(1);clear
+    prog =" community             1967.0 KiB   926 KiB/s 00:04 [-----------------------]  100%\n multilib"
+    print(prog);time.sleep(1);clear
+
 
 def linux_cmd():
+    global term
     while term == "pacman -Syu":
         print(":: Syncronizing package databases...")
         time.sleep(1)
-        print("archlinux_repo\n archlinux_repo_3party")
+        print("archlinux_repo\narchlinux_repo_3party\ncore\nextra")
+        inst_bar()
+        term=""
+    if term == "warp-cli connect":
+        print("Success!")
+    
 
 def interface():
     global cont, term
@@ -39,7 +57,7 @@ ooooooooo.                     -ooooooooo
     """)
     
         term = input(f"[{user}@DefaultSystem ~]$ ")
-
+        linux_cmd()
 
         cont = input("\nWhat would you like to do next?\n [P] Play 'Content Not Included'\n [T] Open Terminal\n [S] Shutdown\n");cont=cont.upper()
         continue
@@ -49,44 +67,6 @@ ooooooooo.                     -ooooooooo
     else:
         exit()
 
+print("Boot Options:\nArch Linux\nArch Linux")
 
-print("""
-
-
- 
-                 .88888888:.
-                88888888.88888.
-              .8888888888888888.
-              888888888888888888
-              88' _`88'_  `88888
-              88 88 88 88  88888
-              88_88_::_88_:88888
-              88:::,::,:::::8888              Tux The Penguin
-              88`:::::::::'`8888              ------------------
-             .88  `::::'    8:88.             Linux
-            8888            `8:888.           For more info:
-          .8888'             `888888.         https://linux.org/
-         .8888:..  .::.  ...:'8888888:.
-        .8888.'     :'     `'::`88:88888
-       .8888        '         `.888:8888.
-      888:8         .           888:88888
-    .888:88        .:           888:88888:
-    8888888.       ::           88:888888
-    `.::.888.      ::          .88888888
-   .::::::.888.    ::         :::`8888'.:.
-  ::::::::::.888   '         .::::::::::::
-  ::::::::::::.8    '      .:8::::::::::::.
- .::::::::::::::.        .:888:::::::::::::
- :::::::::::::::88:.__..:88888:::::::::::'
-  `'.:::::::::::88888888888.88:::::::::'
-miK     `':::_:' -- '' -'-' `':_::::'`""")
-
-inst = input("Proceed with Install?\n [Y] [N]? ");inst=inst.upper()
-
-if inst == "Y":
-    os.system('clear')
-    print("Processing...")
-    time.sleep(5);print("Download complete!\nYou now have the sudden urge to tell everyone that you use Arch")
-    interface();
-elif inst == "N":
-    exit()
+interface()
