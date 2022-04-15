@@ -5,11 +5,8 @@ This uses multiple files
 To keep it simple I used a barebones version of the 'arch' file
 If you want the full experience: change 'line 21' to 'import arch_full'
 """
-
-#!/usr/bin/python   
-print('Content-type: text/html\r\n\r')
-
 import time
+
 print("Hello World!\nInitializing Program...")
 time.sleep(5)
 print("Please wait...")
