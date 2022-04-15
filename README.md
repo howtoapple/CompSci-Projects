@@ -1,4 +1,4 @@
 # CompSci-Projects
 
-ComputerProgramming 1 Projects
-OneDrive sucks!! Github is much better for this.
+ComputerProgramming 1 Projects for class
+Because OneDrive sucks!! Github is much better for this.
