@@ -1,4 +1,5 @@
-#Arch Simple, [Do not touch, already done.]
+#Arch?
+#will be expnaded upon in due time
 import os, time
 cont="";term="";clear = os.system('clear')
 help=["pacman -Syu | Updates System", "credits | Display's credits"]
@@ -54,7 +55,7 @@ def interface():
                yooooooooooo
              .yooooooooooooo                GenicStudios Presents...
             .oooooooooooooooo
-           .oooooooarcoooooooo              ArchSimple
+           .oooooooarcoooooooo              ArchLinux
           .ooooooooo-oooooooooo             ---------------------- 
          .ooooooooo-  oooooooooo            
         :ooooooooo.    :ooooooooo           Made with <3
