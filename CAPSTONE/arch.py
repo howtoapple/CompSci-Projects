@@ -36,7 +36,8 @@ def linux_cmd():
     elif term.upper() == "CONTENT NOT INCLUDED" or term.upper() == ("CONTENTNOTINCLUDED"):
         import ContentNotIncluded
     elif term == "credits":
-        print("Developers  :   Jakeob \n                [Partners name]\n                Rory the cat")
+        print("Developers  :   Jakeob \n                XeonElemental\n                ")
+        print("Special Mentions:   Rory The Cat!\n                 Jared Merrill\n                 Stryxu\n")
 
     elif term == "help":
         print(help)
@@ -52,7 +53,7 @@ def interface():
                  yooooooo
                 yooooooooo
                yooooooooooo
-             .yooooooooooooo                GenicStudios Presents...
+             .yooooooooooooo                GenicStudios™ Presents...
             .oooooooooooooooo
            .oooooooarcoooooooo              ArchSimple
           .ooooooooo-oooooooooo             ---------------------- 
