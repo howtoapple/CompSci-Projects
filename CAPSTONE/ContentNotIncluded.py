@@ -76,6 +76,14 @@ def kitchen():
     clear;print("Sunlight bleeds into the room revealing your unfortunately messy kitchen... you feel the urge to go for a snack.\nThere is a hallway, locked washroom door, and the front door.")
     usr_input=input("What would you like to do?\n");usr_input=usr_input.lower()
 
+    if usr_input=="snack" or usr_input=="eat":
+        Snack()
+    elif usr_input=="hallway":
+        home_hallway()
+    elif usr_input=="washroom":
+        washroom()
+    elif usr_input=="front door":
+        suburbia()
 #Do not fear! The snacks are here!
     def Snack():
         if usr_input=="eat" or usr_input=="snack" and snack >=0:
@@ -90,33 +98,25 @@ def kitchen():
         elif usr_input=="eat" or usr_input=="snack" and snack>=10:
             print("You have ran out of snacks...");snack=snack+1
             kitchen()
-    if usr_input=="snack" or usr_input=="eat":
-        Snack()
-    elif usr_input=="hallway":
-        home_hallway()
-    elif usr_input=="washroom":
-        washroom()
-    elif usr_input=="front door":
-        suburbia()
-
 
 #I don't think i'll make this do anything
 def washroom():
-    pass
+    print("The Washroom is locked. Try again later.")
 
 def suburbia():
     crt_info="debit card"
     clear;print("You step out into the blinding light. What surrounds you are nice homes and townhomes, you see your neighbour Will watering their plants.\nYou also notice your 'mailbox' is overflowing\nYou can travel in 4 directions, North, East, South, and West")
     usr_input =input("What would you like to do?\n");usr_input=usr_input.lower()
     if usr_input =="open mailbox" or usr_input=="mailbox":
-        print(f"You open your mailbox, nothing but junk mail and useless ads\nAlthough one note has 'IMPORTANT' as the title\nIt reads 'Dear {user}, due to some questionable... practices, we WILL disable your game if you do not purchase one of our various DLC's")
+        print(f"You open your mailbox, nothing but junk mail and useless ads\nAlthough one note has 'IMPORTANT' as the title\nIt reads 'Dear {user}, due to some questionable... practices, we at GenicStudios™ WILL disable your game if you do not purchase one of our various DLC's")
         sub_input=input("Please, would you like to buy our DLC's? [Y/n]?");sub_input=sub_input.lower()
         if sub_input=="y" and "yes":
             less_input=input("Please enter your payment info.")
-            if rand <= 5:
+            if rand <= 3:
                 print("Accepted!\nPlease check later for your content to load!")
             else:
                 print("PAYMENT DECLINED, please try again later.")
+    
 
 
 def will():
