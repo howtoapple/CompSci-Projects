@@ -1,6 +1,6 @@
 #Arch Simple, [Do not touch, already done.]
 import os, time
-cont="";term="";clear = os.system('clear')
+cont="";term="";clear = lambda:os.system('clear')
 help=["pacman -Syu | Updates System", "credits | Display's credits"]
 
 def inst_bar():
