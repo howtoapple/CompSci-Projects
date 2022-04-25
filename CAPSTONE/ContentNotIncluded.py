@@ -2,8 +2,9 @@
 from arch import clear, user,time; import random
 
 wait = time.sleep(5);rand = random.randint(0,20)
-begin=True;note_o=False;willmet=False;man=False
+begin=True;note_o=False;willmet=False;man=False;gen=False
 s_code=3284;dlc=0
+
 
 
 #repetitive strings!!!
@@ -302,7 +303,7 @@ def arcade():
                 print("Balance too low!")
                 arcade()
             elif t_price <= money:
-                sub_input=input("Are you sure you want to spend ${t_price} on {less_input} tokens? [Y/n]? ")
+                sub_input=input("Are you sure you want to spend ${t_price} on {less_input} tokens? [Y/n]?\n")
 
                 while sub_input not in submoves:
                     print(out["un"])
@@ -316,7 +317,7 @@ def arcade():
                     arcade()
     elif usr_input=="blockage":
         print("You look at the machine that is labled 'Blockage' by \033[1;36;48mGenicStudios™\033[1;0;48m")
-        sub_input=input("Do you want to play blockage? [Y/n]?");sub_input=sub_input.lower()
+        sub_input=input("Do you want to play blockage? [Y/n]?\n");sub_input=sub_input.lower()
         
         while sub_input not in submoves:
             print(out["un"])
@@ -332,7 +333,7 @@ def arcade():
 
     elif usr_input=="tom":
         print("You look at the machine that is labled 'Tom: The Video Game'")
-        sub_input=input("Do you want to play blockage? [Y/n]?");sub_input=sub_input.lower()
+        sub_input=input("Do you want to play blockage? [Y/n]?\n");sub_input=sub_input.lower()
         
         while sub_input not in submoves:
             print(out["un"])
@@ -348,7 +349,7 @@ def arcade():
 
     elif usr_input=="labyrinth":
         print("You look at the machine that is labled 'Labyrinth' by \033[1;36;48mミラクルミュージカル\033[1;0;48m or Miracle Musical")
-        sub_input=input("Do you want to play Labyrinth? [Y/n]?")
+        sub_input=input("Do you want to play Labyrinth? [Y/n]?\n")
         
         while sub_input not in submoves:
             print(out["un"])
@@ -362,11 +363,45 @@ def arcade():
             print("You decide not to play Labyrinth")
             arcade()
 
-
-
-
 def genic():
-    pass
+    clear;print("As you enter the \033[1;36;48mGenicStudios™\033[1;0;48m Headquarters you are greeted by a Receptionist\n You notice how pristine, clean and \x1B[3mfinished\x1B[23m the interior of the building looks, it's like you entered a new reality. Everything is arranged almost perfectly, you feel a bit intimidated by the enviorment of it...\nYou can leave, talk to the 'receptionist' or get 'water' from the water cooler")
+    moveset=["leave","receptionist","talk","water","water cooler"]; submoves=["y","yes","n","no"]
+    usr_input=input(out["opt"]); usr_input=usr_input.lower()
+
+    while usr_input not in moveset:
+        print(out["un"])
+        usr_input=input(out["opt"]); usr_input=usr_input.lower()
+    if usr_input=="leave":
+        print("You leave the \033[1;36;48mGenicStudios™\033[1;0;48m office building. Freakish place to be honest, I can see why you left.")
+        downtown()
+    if usr_input=="water" or usr_input=="water cooler":
+        print("You walk over to the water cooler, understandably so considering where you are.")
+        if gen==False:
+            str=" You take a step back, not expecting for the water cooler to speak\nWell... Do you want water? [Y/n]?"
+        elif gen==True:
+            str="[Y/n]?"
+
+        sub_input=input(f"\"Would you like some water?\" The machine kindly asks you.{str}")
+        gen=True
+        
+        while sub_input not in submoves:
+            print(out["un"])
+            sub_input=input("Would you like some water? [Y/n]?")
+        if sub_input=="y" or sub_input=="yes":
+            print("The machine dispenses a nice cold cup of water, you grab it and slowly drink it, something... something's not quite right about it.\nYou also can't help but feel like you're being watched...")
+            sus=1
+        elif sub_input=="n" or sub_input=="no":
+            print("You pass the chance to get some water")
+        elif sub_input=="n" or sub_input=="no" and sus==1:
+            print("You pass the chance to get some water... You don't feel comfortable drinking it")
+    
+    elif usr_input=="receptionist" or usr_input=="talk":
+        print(f"You go over to talk to the receptionist.\n\"Welcome {user}, to the \033[1;36;48mGenicStudios™\033 office!")#Finish Later
+
+
+
+#ughhhh, this kind of sucks
+
 def Gjims():
     pass
 
