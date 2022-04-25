@@ -2,8 +2,6 @@
 README
 USE THIS FILE TO START THE PROGRAM
 This uses multiple files
-To keep it simple I used a barebones version of the 'arch' file
-If you want the full experience: change 'line 21' to 'import arch_full'
 """
 import time
 
