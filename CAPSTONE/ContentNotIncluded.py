@@ -1,8 +1,10 @@
 #Content Not Included! The whole point of this project
+from re import sub
 from arch import clear, user,time; import random
 
 wait = lambda:time.sleep(5);rand = random.randint(0,20)
-begin=True;note_o=False;willmet=False;man=False;gen=False
+begin=True;note_o=False;willmet=False;man=False;gen=False;app=False
+horse_dlc=False; expansion_dlc=False; gambling_dlc=False
 s_code=3284;dlc=0
 
 
@@ -25,11 +27,11 @@ def startup():
 ▓▓   ▓▓▓   ▓▓   ▓▓   ▓▓▓   ▓▓   ▓▓▓   ▓ ▓  ▓▓▓▓▓▓▓▓▓▓   ▓▓   ▓▓▓   ▓ ▓▓▓▓▓▓▓   ▓▓▓▓  ▓  ▓▓   ▓▓   ▓▓▓▓   ▓ ▓▓▓▓▓▓▓   ▓▓   ▓▓   ▓▓   ▓▓▓▓   ▓   ▓▓   ▓  ▓▓▓   ▓▓  ▓▓▓▓▓▓▓▓▓  ▓▓▓   ▓
 ████     ██████   █████    ██   ████   ████     ████    ██   ████   ████████   ██████   ████   ████████   ████████   █    ██   ████    █   ███      ██       ████     █████       █
 ███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                                             
-A programming Project
+by GenicStudios™
     """);wait
     bedroom()
 
-stats=lambda:print("Here is what you got.\nHealth: {hp}\nMoney: ${money}\n")
+stats=lambda:print("Here is what you got.\n Health: {hp}\n Money: ${money}\n DLC's: {dlc}")
 
 #I realized how much these lines are used throughout the whole program, so it's now a function!
 def move():
@@ -92,8 +94,9 @@ def home_hallway():
         print("You move the painting and find a safe with a four digit passcode")
         sub_input =input("What is the code? [] [] [] []")
         if sub_input==s_code:
-            print("You found a Divine Luminince Crystal! (DLC)")
-            dlc + 1
+            expansion_dlc=True
+            dlc=dlc+1
+            print(f"You found a Divine Luminince Crystal! (Expansion DLC Acquired!)\n DLC's: {dlc}")
             home_hallway()
         elif sub_input!=s_code:
             print("The code is incorrect")
@@ -359,6 +362,7 @@ def arcade():
             print("You decide not to play Labyrinth")
             arcade()
 
+#GenicStudios Office!
 def genic():
     global usr_input, money, moveset
     clear;print("As you enter the \033[1;36;48mGenicStudios™\033[1;0;48m Headquarters you are greeted by a Receptionist\n You notice how pristine, clean and \x1B[3mfinished\x1B[23m the interior of the building looks, it's like you entered a new reality. Everything is arranged almost perfectly, you feel a bit intimidated by the enviorment of it...\nYou can leave, talk to the 'receptionist' or get 'water' from the water cooler")
@@ -375,12 +379,12 @@ def genic():
         elif gen==True:
             str="[Y/n]?"
 
-        sub_input=input(f"\"Would you like some water?\" The machine kindly asks you.{str}")
+        sub_input=input(f"\"Would you like some water? [Y/n]?\" The machine kindly asks you.\n{str}")
         gen=True
         
         while sub_input not in submoves:
             print(out["un"])
-            sub_input=input("Would you like some water? [Y/n]?")
+            sub_input=input("Would you like some water? [Y/n]?\n")
         if sub_input=="y" or sub_input=="yes":
             print("The machine dispenses a nice cold cup of water, you grab it and slowly drink it, something... something's not quite right about it.\nYou also can't help but feel like you're being watched...")
             sus=1
@@ -391,13 +395,87 @@ def genic():
     
     elif usr_input=="receptionist" or usr_input=="talk":
         print(f"You go over to talk to the receptionist.\n\"Welcome {user}, to the \033[1;36;48mGenicStudios™\033 office! are you here for an 'Appointment' or to buy a 'DLC'?\"")
-
-
         
+        move()
+        if usr_input=="appointment":
+            sub_input=input("The Receptionist looks at their computer and responds \"Are you Mr. Watson?\"[Y/n]\n")
 
+            while sub_input not in submoves:
+                print(out["un"])
+                sub_input=input("Are you?\n")
+            if sub_input=="y" or sub_input=="yes" and app==False:
+                print("The receptionist then says \"Alright Mr. Watson, just step into that elevator and head to the 68th floor..,\"\nYou step into the elevator and it starts heading up to floor 68, you didn't even have to press any buttons\nWhat is even odder is that the entire elevator is encompassed in mirrors, you look to find your reflection staring back at yourself")
+                app=True
+                clear;print("You arrive to your destination...The scenery is a stark contrast from downstairs, everything is less grand, neat, nor perfect, you continue on and are met by a man.\n\"Hello I am Mr. Scribner, its great to see you actually please sit down\" He says.\nYou're intrigued by it and decide to sit down.\n Mr. Scribner then explains\"As the Founder and CEO of GenicStudios it's my duty to ensure that we make revenue and that our investors are happy.\"\nYou start feling as if you aren't iu te g4m3 a- m ")
+                print("plers sign conract here...")
+                submoves=["y","yes","n","no"]
+                contract()
 
+                def contract():    
+                    sub_input=input("¿Te gustarías firmar el contratemos? [Y/n]?\n");sub_input=sub_input.lower()
+                    while sub_input not in submoves:
+                        print(out["un"])
+                        sub_input=input("Would you like to sign the contract?\n");sub_input=sub_input.lower()
+                    if sub_input=="y" or sub_input=="yes":
+                        print("You scan the contract ready to sign it but there are a few things wrong with it\nIt seems as part of the agreement you'd have to give your soul and property to GenicStudios? odd...")
+                        sub_input=input("Do you still want to sign the contract?\n")
 
-#ughhhh, this kind of sucks
+                        while sub_input not in submoves:
+                            print(out["un"])
+                            sub_input=input("Do you still want to sign the contract?\n")
+                        if sub_input=="y" or sub_input=="yes":
+                            less_input=input("Please print your name: ")
+                            print("Signature"+less_input+"X")
+                            print("You have signed your life, soul, property away to GenicStudios.")
+                            print("""  ___  ___  __  __  ___         ___  __   __ ___  ___ 
+                    / __|/   \|  \/  || __|       / _ \ \ \ / /| __|| _ \
+                    | (_ || - || |\/| || _|       | (_) | \   / | _| |   /
+                    \___||_|_||_|  |_||___|       \___/   \_/  |___||_|_\
+                                """)
+                            usr_input=input("[T] Try Again?\n[R] Restart Game?\n[Q] Quit");usr_input=usr_input.upper()
+                            if usr_input=="T":
+                                print("Processing...");wait
+                                contract()
+                            elif usr_input=="R":
+                                print("Restarting Game...");wait
+                                startup()
+                            elif usr_input=="Q":
+                                print("Exiting...");wait
+                                exit
+                        elif sub_input=="n" or sub_input=="no":
+                            print("You refuse signing the contract and now Mickey Scribner is furious")
+                            mick=True
+                            fight()
+                    elif sub_input=="n" or sub_input=="no":
+                        print("you reject the contract, Mickey Scribner, The CEO of GenicStudios is now furious and calls security to throw you out...")
+                        mick=True
+                        fight()
+
+                
+            elif sub_input=="n" or sub_input=="no":
+                print("The receptionist then looks at the computer and responds \"It doesn't seem there's any other appointments today\"\nGreat... You screwed up, should have said you were this Mr. Watson person")
+                genic()
+            else:
+                print("The receptionist tells you there are no appointmens.\nNo appointments?")
+                genic()
+    
+        elif usr_input=="dlc" and horse_dlc==False:
+            sub_input=input("\"There is one DLC avaible to pruchase, would you like to do so?\" Says the receptionist [Y/n]?")
+
+            while sub_input not in submoves:
+                print(out["un"])
+                sub_input=input("Would you like to purchase DLC? [Y/n]?\n")
+            if sub_input=="y" or sub_input=="yes" and money>=23:
+                money = money - 23
+                dlc=dlc+1
+                print(f"You have purchased a DLC! for $23 (Horse Armor DLC Acquired!)\nWell... Was it worth it?\n Balance: {money}\nDLC's:{dlc}")
+                horse_dlc=True
+
+            elif sub_input=="n" or sub_input=="no":
+                print("You decide to not purchase a DLC")
+        else:
+            print("There don't seem to be options here...")
+
 
 def Gjims():
     pass
@@ -428,7 +506,8 @@ def pleateu():
 def mountain():
     pass
 
-
+def fight():
+    pass
 startup()
 
 """
