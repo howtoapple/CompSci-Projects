@@ -1,7 +1,7 @@
 #Content Not Included! The whole point of this project
 from arch import clear, user,time; import random
 
-wait = time.sleep(5);rand = random.randint(0,20)
+wait = lambda:time.sleep(5);rand = random.randint(0,20)
 begin=True;note_o=False;willmet=False;man=False;gen=False
 s_code=3284;dlc=0
 
@@ -31,9 +31,20 @@ A programming Project
 
 stats=lambda:print("Here is what you got.\nHealth: {hp}\nMoney: ${money}\n")
 
+#I realized how much these lines are used throughout the whole program, so it's now a function!
+def move():
+    global usr_input, moveset
+    usr_input=input(out["opt"])
+    usr_input=usr_input.lower()
+
+    while usr_input not in moveset:
+        print(out["un"])
+        usr_input=input(out["opt"])
+        usr_input=usr_input.lower()
+
 #The code for the players bedroom... a bit long
 def bedroom():
-    global begin,money
+    global begin,money,usr_input,moveset
     clear
     if begin == True:
         start="You wake up in your house, you feel a bit drowsy. but you decide to have a look around..."
@@ -41,17 +52,14 @@ def bedroom():
     else:
         start=""
 
-    moveset = ["grab note","open note","hallway","hall","wallet","grab wallet"]
+    moveset = ["grab note","note","hallway","hall","wallet","grab wallet"]
     print(f"{start}\nThere is a 'note' and a 'wallet' on your desk and a door that goes out to a hallway")
-    usr_input=input(out["opt"]);usr_input=usr_input.lower()
 
-    while usr_input not in moveset:
-        print(out["un"])
-        usr_input=input(out["opt"])
+    move()
     if usr_input== "hallway" or usr_input=="hall":
         home_hallway()
-    elif usr_input=="grab note" or usr_input=="open note" or usr_input:
-        
+    elif usr_input=="note" or usr_input=="open note":
+
         clear;print(f"You pick up the note, it reads...\nHello {user}, Thank you for your $69 purchase of [CONTENT NOT INCLUDED]\nWe at \033[1;36;48mGenicStudios™\033[1;0;48m are grateful of your patronage. In return, we offer more content in the form of DLC's (Sold Seperately) for only! $23 per DLC!\nNo need to thank us. We humbly do request that you buy these immedietly")
         sub_input=input("Would you like to purchase the DLC? [Y/n]\n")
         submove = ["y","n","yes","no"];sub_input=sub_input.lower()
@@ -68,28 +76,29 @@ def bedroom():
     elif usr_input=="grab wallet" or usr_input=="wallet":
         print("You grab your wallet, it has a few things inside; which could be important but most notably it has some cash inside.")
         money=20
-        print(f"you now have ${money} in your pocket")
+        print(f"you now have ${money} in your pocket");wait
+        bedroom()
 
 def home_hallway():
-    global dlc
+    global dlc, usr_input, moveset
     clear;print("The hallway is warmly lit by sun entering the room, with a nice painting on the wall\n There is your bedroom, kitchen, and the front door")
-    usr_input=input(out["opt"])
-    moveset=["painting","bedroom","move painting","kitchen","front door"];usr_input=usr_input.lower()
+    moveset=["painting","bedroom","move painting","kitchen","front door"]
 
-    while usr_input not in moveset:
-        print(out["un"])
-        usr_input=input(out["opt"]);usr_input=usr_input.lower()
+    move()
     if usr_input=="painting":
         print("""You look at the painting\nThe person in the painting looks oddly similar to yourself\nit seems quite loose from the wall, maybe you can move it?""")
+        home_hallway()
     elif usr_input=="move painting":
         print("You move the painting and find a safe with a four digit passcode")
         sub_input =input("What is the code? [] [] [] []")
         if sub_input==s_code:
             print("You found a Divine Luminince Crystal! (DLC)")
             dlc + 1
+            home_hallway()
         elif sub_input!=s_code:
             print("The code is incorrect")
             home_hallway()
+            
     elif usr_input=="bedroom":
         bedroom()
     elif usr_input=="kitchen":
@@ -98,13 +107,11 @@ def home_hallway():
         suburbia()
 
 def kitchen():
+    global usr_input, moveset
     clear;print("Sunlight bleeds into the room revealing your unfortunately messy kitchen... you feel the urge to go for a snack.\nThere is a hallway, locked washroom door, and the front door.")
     moveset=["snack","eat","hallway","washroom","front door"]
-    usr_input=input(out["opt"]);usr_input=usr_input.lower()
 
-    while usr_input not in moveset:
-        print(out["un"])
-        usr_input-input(out["opt"]);usr_input=usr_input.lower()
+    move()
     if usr_input=="snack" or usr_input=="eat":
         Snack()
     elif usr_input=="hallway":
@@ -115,16 +122,16 @@ def kitchen():
         suburbia()
 #Do not fear! The snacks are here!
     def Snack():
-        if usr_input=="eat" or usr_input=="snack" and snack >=0:
+        if snack >=0:
             print("You reach into your pantry and find a snack! You eat it.");snack=snack+1
             kitchen()
-        elif usr_input=="eat" or usr_input=="snack" and snack>=2:
+        elif snack>=2:
             print("Snacks!");snack=snack+1
             kitchen()
-        elif usr_input=="eat" or usr_input=="snack" and snack>=5:
+        elif snack>=5:
             print("Wow, very well deserved...");snack=snack+1
             kitchen()
-        elif usr_input=="eat" or usr_input=="snack" and snack>=10:
+        elif snack>=10:
             print("You have ran out of snacks...");snack=snack+1
             kitchen()
 
@@ -134,7 +141,7 @@ def washroom():
 
 #Suburbia | this one is big!
 def suburbia():
-
+    global usr_input,moveset
     if sub==False:
         srt="You step out into the blinding light. What surrounds you are big suburb homes and townhomes, you see your neighbour Will watering their plants.\nYou also notice your 'mailbox' is overflowing\nYou can travel in 4 directions, North, East, South, and West"
         sub = True
@@ -142,13 +149,9 @@ def suburbia():
         srt="You are standing next to your house where you are surrounded by homes, your neighbour will is sitting on their porch.\nYou can go inside your 'Home' or travel, North, East, West, or South."
 
     clear;print(srt)
-    usr_input =input(out["opt"]);usr_input=usr_input.lower()
+    moveset=["mailbox","open mailbox","north","go north","east","go east","south","go south","west","go west","house","home"]; submoves=["y","yes","n","no"]
 
-    #Chkmoves
-    moveset=["mailbox","open mailbox","north","go north","east","go east","south","go south","west","go west","house","home"]
-    submoves=["y","yes","n","no"]
-
-#
+    move()
     while usr_input not in moveset:
         print(out["un"])
         usr_input=input(out["opt"]);usr_input=usr_input.lower()
@@ -214,15 +217,12 @@ def bakesale():
 def forest():
     pass
 def downtown():
+    global usr_input, moveset
     clear;print("You walk through Downtown and it's packed, masses of people pass you, you aren't quite sure where to go from here. Although a building with big flashy lettering spelling out C A S I N O catches your eye\nYou can travel North, East, West or go to the Casino, Arcade, Pizza place, and/or the Recreation of the \033[1;36;48m'GenicStudios'™\033[1;0;48m Office building...")
     moveset=["go north","north","go east","east","go west","west","casino","arcade","genic studios","genic","genicstudios","pizza","garlic jims","pizza place"]
     submoves=["y","yes","n","no"]
-    usr_input=input(out["opt"]);usr_input=usr_input.lower()
 
-
-    while usr_input not in moveset:
-        print(out["un"])
-        usr_input=input(out["opt"]);usr_input=usr_input.lower()
+    move()
     if usr_input=="genic studios" or usr_input=="genic" or usr_input=="genicstudios":
   
         if man==False:
@@ -273,15 +273,11 @@ def capitol():
 def casino():
     pass
 def arcade():
-    global money
+    global money, usr_input, moveset
     clear;print("You enter the arcade, you look at your surroundings, a big dark room filled with rows of arcade cabinets waiting to be used\nYou can 'leave', use the 'token' machine, or play with the 3 open arcade cabinets, 'Blockage', 'Tom', 'Labyrinth' ")
     moveset=["leave","downtown","token","token machine","blockage","tom","labyrinth"]; submoves=["y","yes","n","no"]
-    usr_input=input(out["opt"]);usr_input=usr_input.lower()
 
-
-    while usr_input not in moveset:
-        print(out["un"])
-        usr_input=input(out["opt"]);usr_input=usr_input.lower()
+    move()
     if usr_input=="leave" or usr_input=="downtown":
         print("You decide to exit the arcade")
         downtown()
@@ -364,13 +360,11 @@ def arcade():
             arcade()
 
 def genic():
+    global usr_input, money, moveset
     clear;print("As you enter the \033[1;36;48mGenicStudios™\033[1;0;48m Headquarters you are greeted by a Receptionist\n You notice how pristine, clean and \x1B[3mfinished\x1B[23m the interior of the building looks, it's like you entered a new reality. Everything is arranged almost perfectly, you feel a bit intimidated by the enviorment of it...\nYou can leave, talk to the 'receptionist' or get 'water' from the water cooler")
-    moveset=["leave","receptionist","talk","water","water cooler"]; submoves=["y","yes","n","no"]
-    usr_input=input(out["opt"]); usr_input=usr_input.lower()
+    moveset=["leave","receptionist","talk","water","water cooler","appointment","DLC"]; submoves=["y","yes","n","no"]
 
-    while usr_input not in moveset:
-        print(out["un"])
-        usr_input=input(out["opt"]); usr_input=usr_input.lower()
+    move()
     if usr_input=="leave":
         print("You leave the \033[1;36;48mGenicStudios™\033[1;0;48m office building. Freakish place to be honest, I can see why you left.")
         downtown()
@@ -396,7 +390,10 @@ def genic():
             print("You pass the chance to get some water... You don't feel comfortable drinking it")
     
     elif usr_input=="receptionist" or usr_input=="talk":
-        print(f"You go over to talk to the receptionist.\n\"Welcome {user}, to the \033[1;36;48mGenicStudios™\033 office!")#Finish Later
+        print(f"You go over to talk to the receptionist.\n\"Welcome {user}, to the \033[1;36;48mGenicStudios™\033 office! are you here for an 'Appointment' or to buy a 'DLC'?\"")
+
+
+        
 
 
 
@@ -416,12 +413,9 @@ def west():
   Please buy the required DLC (More Area DLC) from the official \033[1;36;48mGenicStudios™\033[1;0;48m store in order to pass
   """)
     print("It seems that a lovely pop-up has appeared\nYou can go back East or try heading 'West' again")
-    usr_input=input("What would you like to do?");usr_input=usr_input.lower()
     moveset=["east","west"]
 
-    while usr_input not in moveset:
-        print("Unrecognized Option")
-        usr_input=input("What would you like to do?");usr_input=usr_input.lower()
+    move()
     if usr_input=="west":
         west()
     elif usr_input=="east":
