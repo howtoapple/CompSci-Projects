@@ -199,7 +199,7 @@ def suburbia():
     elif usr_input=="go north" or usr_input=="north":
         if willmet==False:
             clear();print("You start walking North, unfortunately your neighbour Will stops you");willmet==True
-            time.sleep(5)
+            time.sleep(3)
             will()
         elif willmet==True:
 
@@ -208,7 +208,7 @@ def suburbia():
                 sub_input=input("Would you like to continue North? [Y/n]?\n");sub_input=sub_input.lower()
             if sub_input=="y" or sub_input=="yes":
                 print("You decide to stop by Will's house, because why not?")
-                time.sleep(4)
+                time.sleep(3)
                 will_house()
             elif sub_input=="n" or sub_input=="no":
                 print(f"You continue walking up north, you pass rows of homes and you see kids playing up and down the suburban streets.\n you can't help but notice that some parts of the neighbourhood are missing textures, symbolized by the black and purple checkered patterns on certain objects\nYou now finally reach the forest")
@@ -244,7 +244,9 @@ def suburbia():
 
 
 def will():
-    pass
+    print("Will starts talking about plants, then something about Divine Luminence Crystals (DLC's) and something to do with a painting?\nWill then invites you inside")
+    moveset=[] subset
+    move()
 def will_house():
     pass
 def bakesale():
