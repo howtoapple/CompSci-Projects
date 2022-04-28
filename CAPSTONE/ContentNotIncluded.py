@@ -183,59 +183,63 @@ def suburbia():
     moveset=["mailbox","open mailbox","north","go north","east","go east","south","go south","west","go west","house","home"]; submoves=["y","yes","n","no"]
 
     move()
-    while usr_input not in moveset:
-        print(out["un"])
-        usr_input=input(out["opt"]);usr_input=usr_input.lower()
-
     if usr_input =="open mailbox" or usr_input=="mailbox":
         clear();print(f"You open your mailbox, nothing but junk mail and useless ads\nAlthough one note has 'IMPORTANT' as the title\nIt reads 'Dear {user}, due to some questionable... practices, we at \033[1;36;48mGenicStudios™\033[1;0;48m WILL disable your game if you do not purchase one of our various DLC's")
-        sub_input=input("Please, would you like to buy our DLC's? [Y/n]?");sub_input=sub_input.lower()
+        sub_input=input("Please, would you like to buy our DLC's? [Y/n]? ");sub_input=sub_input.lower()
         if sub_input=="y" and "yes":
-            clear();less_input=input("Please enter your payment info.")
+            clear();less_input=input("Please enter your payment info.\n")
             if rand <= 3:
                 print("\nAccepted!\nPlease check later for your content to load!")
+                time.sleep(4)
                 suburbia()
             else:
                 print("\nPAYMENT DECLINED, please try again later.")
+                time.sleep(4)
                 suburbia()
     elif usr_input=="go north" or usr_input=="north":
         if willmet==False:
             clear();print("You start walking North, unfortunately your neighbour Will stops you");willmet==True
+            time.sleep(5)
             will()
         elif willmet==True:
-            print("You walk north and stop next to wills house")
-            sub_input=input("Would you like to continue north? [Y/n]?\n");sub_input=sub_input.lower()
 
             while sub_input not in submoves:
                 print(out["un"])
                 sub_input=input("Would you like to continue North? [Y/n]?\n");sub_input=sub_input.lower()
             if sub_input=="y" or sub_input=="yes":
                 print("You decide to stop by Will's house, because why not?")
+                time.sleep(4)
                 will_house()
             elif sub_input=="n" or sub_input=="no":
                 print(f"You continue walking up north, you pass rows of homes and you see kids playing up and down the suburban streets.\n you can't help but notice that some parts of the neighbourhood are missing textures, symbolized by the black and purple checkered patterns on certain objects\nYou now finally reach the forest")
+                time.sleep(6)
                 forest()
     elif usr_input=="go east" or usr_input=="east":
         print("You start heading east, as you walk down you notice that a whole road is missing! did the devs really forget to add a road here? anyways, you see a bakesale down the block")
-        sub_input=input("Would you like to go to the bakesale? [Y/n]?");sub_input=sub_input.lower()
+        sub_input=input("Would you like to go to the bakesale? [Y/n]? ");sub_input=sub_input.lower()
 
         while sub_input not in submoves:
             print(out["un"])
-            sub_input=input("would you like to go to the bakesale? [Y/n]?");sub_input=sub_input.lower()
+            sub_input=input("would you like to go to the bakesale? [Y/n]? ");sub_input=sub_input.lower()
         if sub_input=="y" or sub_input=="yes":
             print("You change route and head to the bakesale")
+            time.sleep(4)
             bakesale()
         elif sub_input=="n" or sub_input=="no":
             print("You continue north and near the downtown area of your city. You look up; only to see skyscrapers bound up, creating a formidable skyline")
+            time.sleep(5)
             downtown()
     elif usr_input=="go west" or usr_input=="west":
         print("You head west, this area of the neighbourhood has an unsually high amount of flowers, you reach your destination")
+        time.sleep(4)
         west()
     elif usr_input=="go south" or usr_input=="south":
         print("You head south, the roads start getting steeper up hill, you then see the mountains in the distance... How did you not see this before?")
+        time.sleep(5)
         pleateu()
     elif usr_input=="home" or usr_input=="house":
         print("You walk up to your front door; open it and head inside")
+        time.sleep(3)
         home_hallway()
 
 
@@ -264,14 +268,14 @@ def downtown():
             str=""
         print(f"You walk towards the \033[1;36;48mGenicStudios™\033[1;0;48m Office, it looks way nicer in the game than in real life.\n{str}")
         while man==False:
-            sub_input=input("Do you accept? [Y/n]?\n")
+            sub_input=input("Do you accept? [Y/n]? ")
             man=True
         while sub_input not in submoves:
             print(out["un"])
-            sub_input=input("Do you accept? [Y/n]?")
+            sub_input=input("Do you accept? [Y/n]? ")
         if sub_input=="y" or sub_input=="yes":
             print("You just purchased unlicensed DLC!")
-            less_input=input("Would you like to restart your game to apply DLC? [Y/n]?")
+            less_input=input("Would you like to restart your game to apply DLC? [Y/n]? ")
             while less_input not in submoves:
                 print(out["un"])
                 less_input=input("Would you like to restart your game?")
@@ -280,6 +284,7 @@ def downtown():
                 from stuff import illegal;illegal()
         elif sub_input=="n" or sub_input=="no":
             print("You tell the man no, and you continue on your path over to the\033[1;36;48m'GenicStudios'™\033[1;0;48m Building")
+            time.sleep(4)
             genic()
 
     elif usr_input=="go north" or usr_input=="north":
@@ -291,14 +296,16 @@ def downtown():
         time.sleep(4)
         uptown()
     elif usr_input=="go west" or usr_input=="west":
-        print("You head west, over through the suburbs, a road appears to be missing from the game...")
+        clear();print("You head west, over through the suburbs, a road appears to be missing from the game...")
         time.sleep(4)
         suburbia()
     elif usr_input=="casino":
-        print("You head over to the casino.")
+        clear();print("You head over to the casino.")
+        time.sleep(2)
         casino()
     elif usr_input=="arcade":
-        print("You go to the arcade, maybe you can play some games in there. Who knows?")
+        clear();print("You go to the arcade, maybe you can play some games in there. Who knows?")
+        time.sleep(3)
         arcade()
     elif usr_input=="pizza" or usr_input=="pizza place" or usr_input=="garlic jims":
         clear();print("You go to the pizza place, it has a sign above it 'Garlic Jims Famous Gourmet Pizza', a bit odd, and a lengthy name. but you decide you could go for something to eat.")
@@ -317,6 +324,7 @@ def arcade():
     move()
     if usr_input=="leave" or usr_input=="downtown":
         print("You decide to exit the arcade")
+        time.sleep(3)
         downtown()
     elif usr_input=="token" or usr_input=="token machine":
         clear();print("You go over to the token machine, you can spend cash to recieve some tokens to play the games.")
