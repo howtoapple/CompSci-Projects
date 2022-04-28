@@ -1,18 +1,19 @@
 #Arch Simple, [Do not touch, already done.]
-import os, time
-cont="";term="";clear = lambda:os.system('clear')
+import os, time;
+cont="";term="";clear = lambda:os.system('cls')
+crash=False
 help=["pacman -Syu | Updates System", "credits | Display's credits"]
 
 def inst_bar():
     global prog
     prog =" community             256.0 KiB   816 KiB/s 00:01 [---Co o  o  o  o  o  o  ]  21%"
-    print(prog);time.sleep(1);clear
+    print(prog);time.sleep(1);clear()
     prog =" community             624.0 KiB   957 KiB/s 00:02 [--------Co  o  o  o  o  ]  36%"
-    print(prog);time.sleep(1);clear
+    print(prog);time.sleep(1);clear()
     prog =" community             1245.0 KiB   892 KiB/s 00:03 [----------------Co  o  ]  62%"
-    print(prog);time.sleep(1);clear
+    print(prog);time.sleep(1);clear()
     prog =" community             1967.0 KiB   926 KiB/s 00:04 [-----------------------]  100%\n multilib"
-    print(prog);time.sleep(1);clear
+    print(prog);time.sleep(1);clear()
 
 
 def linux_cmd():
@@ -76,10 +77,10 @@ ooooooooo.                     -ooooooooo
         cont = input("\nWhat would you like to do?\n [P] Play 'Content Not Included'\n [T] Open Terminal\n [S] Shutdown\n");cont=cont.upper()
         continue
     if cont =="P":
-        os.system('clear');print("Starting..");time.sleep(2)
+        print("Starting..");time.sleep(2);clear()
         import ContentNotIncluded
     else:
         exit()
 
-user, password = input("Your name?\n"), input("Password?\n")
+user, password = input("Your name?\n"), input("Password?\n");clear()
 interface()

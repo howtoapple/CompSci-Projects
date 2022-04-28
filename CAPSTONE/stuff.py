@@ -32,4 +32,3 @@ def illegal():
         print("Uninstalling...")
         from ContentNotIncluded import downtown
         downtown()
-    
