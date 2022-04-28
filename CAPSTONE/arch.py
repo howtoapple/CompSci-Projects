@@ -35,6 +35,7 @@ def linux_cmd():
         print("Success!")
         term =""
     elif term.upper() == "CONTENT NOT INCLUDED" or term.upper() == ("CONTENTNOTINCLUDED"):
+        clear()
         import ContentNotIncluded
     elif term == "credits":
         print("Developers  :   Jakeob \n                XeonElemental\n                ")
@@ -48,7 +49,7 @@ def interface():
     cont = input("What would you like to do?\n [P] Play 'Content Not Included'\n [T] Open Terminal\n [S] Shutdown\n");cont=cont.upper()
 
     while term == "" and cont=="T":
-        print(f"""                    /-
+        clear();print(f"""                    /-
                    ooo:
                   yoooo/
                  yooooooo
