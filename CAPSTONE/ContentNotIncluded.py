@@ -199,8 +199,20 @@ def suburbia():
     elif usr_input=="go north" or usr_input=="north":
         if willmet==False:
             clear();print("You start walking North, unfortunately your neighbour Will stops you");willmet==True
-            time.sleep(3)
-            will()
+            print("Will starts talking about plants, then something about Divine Luminence Crystals (DLC's) and something to do with a painting?")
+            subset=["y","yes","n","no"]
+            usr_input=input("Will then invites you to their house. Do you accept? [Y/n]? ")
+
+            while usr_input not in subset:
+                print(out["un"])
+                usr_input=input("Will then invites you to their house. Do you accept? [Y/n]? ")
+            if usr_input=="y" or usr_input=="yes":
+                print("You accept Will's invite!")
+                willmet=False
+                will_house()
+            elif usr_input=="n" or usr_input=="no":
+                print("You decline Will's request.\n and you continue on North")
+                forest()
         elif willmet==True:
 
             while sub_input not in submoves:
@@ -243,14 +255,28 @@ def suburbia():
         home_hallway()
 
 
-def will():
-    print("Will starts talking about plants, then something about Divine Luminence Crystals (DLC's) and something to do with a painting?\nWill then invites you inside")
-    moveset=[] subset
-    move()
+
+
+
 def will_house():
-    pass
+    print("You enter will's house, it's a nicely decorated cozy looking place.")
+    moveset=["leave","stay"]
+    if willmet==False:
+        print("You sit on the couch and will starts going on a long rant about programming... and talks about functions and if...else statements.\nYou obviously get bored it feels like hours have passed, but you finally find the courage to tell Will that you have an appointment w/ someone\nYou can 'leave', or stay")
+        
+        move()
+        if usr_input=="leave":
+            print("\nYou leave!")
+            time.sleep(2)
+            suburbia()
+        elif usr_input=="stay":
+            print("\nYou stay")
+            time.sleep(2)
+            print("\"Aren't you going to a meeting?\" Will asks, it doesn't feel right to stay after lying, so you leave")
+            suburbia()
+
 def bakesale():
-    pass
+    clear();print("There are three people operating the bakesale, you go up and you see a variety of options to choose from ")
 def forest():
     pass
 
