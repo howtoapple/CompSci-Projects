@@ -1,6 +1,6 @@
 #Arch Simple, [Do not touch, already done.]
 import os, time;
-cont="";term="";clear = lambda:os.system('cls')
+cont="";term="";clear = lambda:os.system('clear')
 crash=False
 help=["pacman -Syu | Updates System", "credits | Display's credits"]
 
