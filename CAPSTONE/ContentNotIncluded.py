@@ -4,12 +4,12 @@ from arch import clear, user,time; import random
 rand = random.randint(0,20)
 begin=True;note_o=False;willmet=False;man=False;gen=False;app=False;sub=False;employee=False
 horse_dlc=False; expansion_dlc=False; gambling_dlc=False
-s_code=3284;dlc=0; value=0; money=0;i=0;snack=0
+s_code=3284;dlc=0; value=0; money=0;i=0;snack=0;food=0
 stats=lambda:print("Here is what you got.\n Health: {hp}\n Money: ${money}\n DLC's: {dlc}")
 
 
 out = {
-    "opt": "\033[1;32;48mWhat would you like to do?\033[1;0;48m\n\033[1;49;48m",
+    "opt": "\033[1;32;48mWhat would you like to do?\033[1;0;48m\n\033[1;49;48m\n",
     "un": "Unrecognized Option"
 }
 
@@ -69,14 +69,14 @@ def bedroom():
         home_hallway()
     elif usr_input=="note" or usr_input=="open note":
 
-        clear();print(f"You pick up the note, it reads...\nHello {user}, Thank you for your $69 purchase of [CONTENT NOT INCLUDED]\nWe at \033[1;36;48mGenicStudios™\033[1;0;48m are grateful of your patronage. In return, we offer more content in the form of DLC's (Sold Seperately) for only! $23 per DLC!\nNo need to thank us. We humbly do request that you buy these immedietly")
+        clear();print(f"You pick up the note, it reads...\n\nHello {user}, Thank you for your $69 purchase of [CONTENT NOT INCLUDED]\nWe at \033[1;36;48mGenicStudios™\033[1;0;48m are grateful of your patronage. In return, we offer more content in the form of DLC's (Sold Seperately) for only! $23 per DLC!\nNo need to thank us. We humbly do request that you buy these immedietly")
         sub_input=input("\033[1;32;48mWould you like to purchase the DLC?\033[1;0;48m [Y/n]\n")
         submove = ["y","n","yes","no"];sub_input=sub_input.lower()
 
 
         while sub_input not in submove:
             print(out["un"])
-            sub_input=input("Would you like to purchase the DLC? [Y/n]\n")
+            sub_input=input("Would you like to purchase the DLC? [Y/n] ")
         if sub_input=="y" or sub_input=="yes":
             print("Uh oh! Looks like you have insufficient funds!")
             time.sleep(3)
@@ -91,7 +91,7 @@ def bedroom():
             i+=1
             value=-20;mon()
             print(f"you now have ${money} in your pocket")
-            usr_input=input("Press \033[1;36;48m[Enter]\033[1;0;48m to continue...\033[1;39;48m")
+            usr_input=input("\nPress \033[1;36;48m[Enter]\033[1;0;48m to continue...\033[1;39;48m")
             print("\033[1;0;48m")
             bedroom()
         else:
@@ -139,24 +139,26 @@ def kitchen():
     
     move()
     if usr_input=="snack" or usr_input=="eat":
-        if snack >=0:
+
+#These SHITTY lines never fucking work as intended. holy fucking shit. I think they work now... On god if I find out later they're still broken
+        if snack <=2:
             print("\nYou reach into your pantry and find a snack! You eat it.")
-            time.sleep(4)
+            time.sleep(3)
             snack+=1
             kitchen()
-        elif snack>=2:
+        elif snack<=5:
             ("\nSnacks!")
             snack+=1
-            time.sleep(4)
+            time.sleep(3)
             kitchen()
-        elif snack>=5:
+        elif snack>=7:
             print("\nWow, very well deserved...")
-            time.sleep(4)
+            time.sleep(3)
             snack+=1
             kitchen()
-        elif snack>=10:
+        elif snack==10:
             print("\nYou have ran out of snacks...")
-            time.sleep(4)
+            time.sleep(3)
             kitchen()
     elif usr_input=="hallway" or usr_input=="hall":
         home_hallway()
@@ -276,9 +278,53 @@ def will_house():
             suburbia()
 
 def bakesale():
-    clear();print("There are three people operating the bakesale, you go up and you see a variety of options to choose from ")
+    global money, value, usr_input, moveset
+    clear();print("There are three people operating the bakesale, you go up and you see a variety of options to choose from\n You can 'leave', or buy from the items that the bakesale has such as: Cupcakes, Muffins, Cookies, Brownies,  ")
+    moveset=["leave","cupcake","cupcakes","muffin","muffins","cookie","cookies","brownies"]; subset=["y","yes,","n","no"]
+    
+    def bake():
+        global usr_input,value
+        sub_input=input(f"You ask for some {usr_input}\nBuy {usr_input} for ${value}? [Y/n]? ")
+
+        while sub_input not in subset:
+            print(out["un"])
+            sub_input=input(f"Purchase {usr_input}? [Y/n]? ")
+        if money <= value:
+            print("Balance too low")
+        elif sub_input=="y" or sub_input=="yes":
+            mon()
+            print(f"You sacrafice your money for some {usr_input}")
+            time.sleep(3)
+            snack+=1
+            bakesale()
+        elif sub_input=="n" or sub_input=="no":
+            usr_input=usr_input.upper()
+            print(f"${value} FOR {usr_input}?! What a scam.")
+            time.sleep(3)
+            bakesale()
+
+    move()
+    if usr_input=="leave":
+        print("You leave from the bakesale and continue East.")
+        time.sleep(3)
+        downtown()
+    elif usr_input=="cupcake" or usr_input=="cupcakes":
+        value=9
+        bake()
+    elif usr_input=="muffin" or usr_input=="muffins":
+        value=7
+        bake()
+    elif usr_input=="cookie" or usr_input=="cookies":
+        value=6
+        bake()
+    elif usr_input=="brownies":
+        value=5
+        bake()
+
+
 def forest():
-    pass
+    clear();print("\"He was in the forest looking to see the trees, but none were there.\"\nOh. whoops, you are now in the forest ")
+    moveset["south","north","west","town","east"]
 
 
 def downtown():
