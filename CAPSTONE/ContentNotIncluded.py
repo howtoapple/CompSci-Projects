@@ -39,8 +39,8 @@ def startup():
     """);time.sleep(5)
     bedroom()
 
-def move():
-    global usr_input, moveset
+def move(moveset):
+    global usr_input
     usr_input=input(out["opt"])
     print("\033[1;0;48m")
     usr_input=usr_input.lower()
@@ -53,7 +53,7 @@ def move():
 
 #The code for the players bedroom... a bit long
 def bedroom():
-    global begin,value,usr_input,moveset,money,i
+    global begin,value,usr_input,moveset,money,i,death
     clear()
     if begin == True:
         start="You wake up in your house, you feel a bit drowsy. but you decide to have a look around..."
@@ -70,7 +70,7 @@ def bedroom():
     moveset = ["grab note","note","hallway","hall","wallet","grab wallet"]
     print(f"{start}\nThere is a 'note' and a 'wallet' on your desk and a door that goes out to a hallway")
 
-    move()
+    move(moveset)
     if usr_input== "hallway" or usr_input=="hall":
         home_hallway()
     elif usr_input=="note" or usr_input=="open note":
@@ -112,7 +112,7 @@ def home_hallway():
     clear();print("The hallway is warmly lit by sun entering the room, with a nice painting on the wall\nThere is your bedroom, kitchen, and the front door")
     moveset=["painting","bedroom","move painting","kitchen","front door"]
 
-    move()
+    move(moveset)
     if usr_input=="painting":
         clear();print("""You look at the painting\nThe person in the painting looks oddly similar to yourself\nit seems quite loose from the wall, maybe you can move it?""")
         time.sleep(5)
@@ -143,7 +143,7 @@ def kitchen():
     clear();print("Sunlight bleeds into the room revealing your unfortunately messy kitchen... you feel the urge to go for a snack.\nThere is a hallway, locked washroom door, and the front door.")
     moveset=["snack","eat","hallway","hall","washroom","front door"]
     
-    move()
+    move(moveset)
     if usr_input=="snack" or usr_input=="eat":
 
         if snack <=2:
@@ -179,7 +179,7 @@ def washroom():
 
 #Suburbia | this one is big!
 def suburbia():
-    global usr_input,moveset,sub
+    global usr_input,moveset,sub,willmet
     if sub==False:
         srt="You step out into the blinding light. What surrounds you are big suburb homes and townhomes, you see your neighbour Will watering their plants.\nYou also notice your 'mailbox' is overflowing\nYou can travel in 4 directions, North, East, South, and West"
         sub = True
@@ -189,7 +189,7 @@ def suburbia():
     clear();print(srt)
     moveset=["mailbox","open mailbox","north","go north","east","go east","south","go south","west","go west","house","home"]; submoves=["y","yes","n","no"]
 
-    move()
+    move(moveset)
     if usr_input =="open mailbox" or usr_input=="mailbox":
         clear();print(f"You open your mailbox, nothing but junk mail and useless ads\nAlthough one note has 'IMPORTANT' as the title\nIt reads 'Dear {user}, due to some questionable... practices, we at \033[1;36;48mGenicStudios™\033[1;0;48m WILL disable your game if you do not purchase one of our various DLC's")
         sub_input=input("Please, would you like to buy our DLC's? [Y/n]? ");sub_input=sub_input.lower()
@@ -268,7 +268,7 @@ def will_house():
     if willmet==False:
         print("You sit on the couch and will starts going on a long rant about programming... and talks about functions and if...else statements.\nYou obviously get bored it feels like hours have passed, but you finally find the courage to tell Will that you have an appointment w/ someone\nYou can 'leave', or stay")
         
-        move()
+        move(moveset)
         if usr_input=="leave":
             print("\nYou leave!")
             time.sleep(2)
@@ -305,7 +305,7 @@ def bakesale():
             time.sleep(3)
             bakesale()
 
-    move()
+    move(moveset)
     if usr_input=="leave":
         print("You leave from the bakesale and continue East.")
         time.sleep(3)
@@ -331,9 +331,9 @@ def forest():
         bear=""
 
     clear();print(f"\"He was in the forest looking to see the trees, but none were there.\"\nOh. whoops, you are now in the forest. it's spring this time of year and the flowers are blooming, {bear}\nYou can go North, South, or East")
-    moveset["south","north","west","town","east","sound"]; subset=["R","F","G"]
+    moveset=["south","north","west","town","east","sound"]; subset=["R","F","G"]
 
-    move()
+    move(moveset)
     if usr_input=="sound":
         print("You look around to see what the sound is.. You discover a bear")
         sub_input=input("What do you do?\n [R] Run\n [F] Fight [G] Give up");sub_input=sub_input.upper()
@@ -361,7 +361,7 @@ def forest():
         suburbia()
     elif usr_input=="north":
         print("You head North, deeper into the forest.")
-        time.sleep("3")
+        time.sleep(3)
         deepForest()
     elif usr_input=="west":
         print("You hea- wait a minute...");time.sleep(2)
@@ -377,7 +377,7 @@ def deepForest():
     clear();print("You are now in the deep forest, not much really. The name was just for show... but you do hear something whispering in the air..\nYou are barely able to discern what it says: \"Please... buy... dlc...\" odd...\n You can 'leave' or do 'nothing'")
     moveset=["leave","nothing","do nothing"]; subset=["y","yes","n","no"]
 
-    move()
+    move(moveset)
     if usr_input=="leave":
         print("\nYou leave, it's a boring place anyways, did you expect to see a dragon or something?")
         time.sleep(3)
@@ -403,7 +403,7 @@ def town():
     clear();print("The small town looks like it's from the medieval ages... sheesh. You pass by many buildings, in which they all look like they were built in the 1600s\nMany people are even using horses to get around on these primative roads!\nThis doesn't seem right...\nYou can go West, South, or the 'Tavern'")
     moveset=["west","south","tavern"]
     
-    move()
+    move(moveset)
     if usr_input=="west":
         print("You head west to the forest.")
         time.sleep(2)
@@ -421,7 +421,7 @@ def tavern():
     clear();print("You waltz into the Tavern, Wow even the people here look like they're supposed to be from a different type of game.\nYou can buy a 'drink', fight or 'leave'")
     moveset=["drink","fight","leave"]; subset=["A","G","W"]
 
-    move()
+    move(moveset)
     if usr_input=="drink":
         clear();print("You take a look at the options...\n\tMenu:\n [A] Apple Juice\n [G] Grape Juice\n [U] Water\n [A] Unfinished...")
         sub_input=input("What would you like to drink?");sub_input=sub_input.upper()
@@ -438,6 +438,10 @@ def tavern():
         elif sub_input=="U" and money >= 4:
             print("You buy a bottle o' Water for $4")
             value=4;mon()
+        if money <= 9:
+            clear();print("You do not have enough money for drinks!")
+            time.sleep(1)
+            tavern()
     
     elif usr_input=="fight":
         print("You decide to randomly fight a stranger that is right next to you.")
@@ -454,7 +458,7 @@ def downtown():
     moveset=["go north","north","go east","east","go west","west","casino","arcade","genic studios","genic","genicstudios","pizza","garlic jims","pizza place"]
     submoves=["y","yes","n","no"]
 
-    move()
+    move(moveset)
     if usr_input=="genic studios" or usr_input=="genic" or usr_input=="genicstudios":
   
         if man==False:
@@ -516,7 +520,7 @@ def arcade():
     clear();print("You enter the arcade, you look at your surroundings, a big dark room filled with rows of arcade cabinets waiting to be used\nYou can 'leave', use the 'token' machine, or play with the 3 open arcade cabinets, 'Blockage', 'Tom', 'Labyrinth' ")
     moveset=["leave","downtown","token","token machine","blockage","tom","labyrinth"]; submoves=["y","yes","n","no"]
 
-    move()
+    move(moveset)
     if usr_input=="leave" or usr_input=="downtown":
         print("You decide to exit the arcade")
         time.sleep(3)
@@ -610,7 +614,7 @@ def genic():
     clear();print("As you enter the \033[1;36;48mGenicStudios™\033[1;0;48m Headquarters you are greeted by a Receptionist\nYou notice how pristine, clean and \x1B[3mfinished\x1B[23m the interior of the building looks, it's like you entered a new reality. Everything is arranged almost perfectly, you feel a bit intimidated by the enviorment of it...\nYou can leave, talk to the 'receptionist' or get 'water' from the water cooler")
     moveset=["leave","receptionist","talk","water","water cooler","appointment","DLC"]; submoves=["y","yes","n","no"]
 
-    move()
+    move(moveset)
     if usr_input=="leave":
         print("You leave the \033[1;36;48mGenicStudios™\033[1;0;48m office building. Freakish place to be honest, I can see why you left.")
         downtown()
@@ -638,7 +642,7 @@ def genic():
     elif usr_input=="receptionist" or usr_input=="talk":
         clear();print(f"You go over to talk to the receptionist.\n\"Welcome {user}, to the \033[1;36;48mGenicStudios™\033[1;0;48m office! are you here for an 'Appointment' or to buy a 'DLC'?\"")
         
-        move()
+        move(moveset)
         if usr_input=="appointment":
             sub_input=input("The Receptionist looks at their computer and responds \"Are you Mr. Watson?\"[Y/n]? ")
 
@@ -720,7 +724,7 @@ def Gjims():
     print("You enter Garlic Jim's Pizza, and the smell of Garlic immedietly hits you. There is a cashier waiting patiently\nYou can, leave, order, or 'insult' the employee")
     moveset=["leave","order","insult","insult employee"];lessmoves=["P","C","M","H","S","J","K"]
 
-    move()
+    move(moveset)
     if usr_input=="leave":
         print("You leave the pizza place")
         downtown()
@@ -772,7 +776,7 @@ def west():
         """)
         print("It seems that a lovely pop-up has appeared\nYou can go back East or try heading 'West' again")
         moveset=["east","west"]
-        move()
+        move(moveset)
         if usr_input=="west":
             west()
         elif usr_input=="east":
