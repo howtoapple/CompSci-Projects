@@ -2,7 +2,7 @@
 from arch import clear, user,time; import random
 
 rand = random.randint(0,20)
-begin=True;note_o=False;willmet=False;man=False;gen=False;app=False;sub=False;employee=False
+begin=True;note_o=False;willmet=False;man=False;gen=False;app=False;sub=False;employee=False;death=False;bear=False;b=False
 horse_dlc=False; expansion_dlc=False; gambling_dlc=False
 s_code=3284;dlc=0; value=0; money=0;i=0;snack=0;food=0
 stats=lambda:print("Here is what you got.\n Health: {hp}\n Money: ${money}\n DLC's: {dlc}")
@@ -59,6 +59,12 @@ def bedroom():
         start="You wake up in your house, you feel a bit drowsy. but you decide to have a look around..."
         begin=False
     else:
+        start=""
+    
+    if death==True:
+        start="You suddenly rewake in your house, it seemed like what just happened there was a bad dream..."
+        death=False
+    elif death==False:
         start=""
     
     moveset = ["grab note","note","hallway","hall","wallet","grab wallet"]
@@ -319,9 +325,128 @@ def bakesale():
 
 
 def forest():
-    clear();print("\"He was in the forest looking to see the trees, but none were there.\"\nOh. whoops, you are now in the forest. it's spring this time of year and the flowers are blooming, althought you are alergic to pollen.")
-    moveset["south","north","west","town","east",]
+    if b ==False:
+        bear="you hear a weird 'sound' in the distance"
+    elif b==True:
+        bear=""
 
+    clear();print(f"\"He was in the forest looking to see the trees, but none were there.\"\nOh. whoops, you are now in the forest. it's spring this time of year and the flowers are blooming, {bear}\nYou can go North, South, or East")
+    moveset["south","north","west","town","east","sound"]; subset=["R","F","G"]
+
+    move()
+    if usr_input=="sound":
+        print("You look around to see what the sound is.. You discover a bear")
+        sub_input=input("What do you do?\n [R] Run\n [F] Fight [G] Give up");sub_input=sub_input.upper()
+
+        while sub_input not in subset:
+            print(out["un"])
+            sub_input=input("What do you do?\n [R] Run\n [F] Fight [G] Give up");sub_input=sub_input.upper()
+        if sub_input=="R":
+            print("You try and run but you soon realize this was a bad idea.\nYou lose to the bear.")
+            time.sleep(3)
+            death=True
+            bedroom()
+        elif sub_input=="F":
+            print("You now try to fight the bear")
+            time.sleep(2)
+            bear=True
+            fight()
+        elif sub_input=="G":
+            print("You give up and back away slowly...\n It seemed to work? Oh well... looks like you are safe!")
+            time.sleep(3)
+            forest()
+    elif usr_input=="south":
+        print("You get scared of the scary forest and you leave South.")
+        time.sleep(3)
+        suburbia()
+    elif usr_input=="north":
+        print("You head North, deeper into the forest.")
+        time.sleep("3")
+        deepForest()
+    elif usr_input=="west":
+        print("You hea- wait a minute...");time.sleep(2)
+        print("West wasn't an option! how dare you?!")
+        time.sleep(3)
+        forest()
+    elif usr_input=="east":
+        print("You head east, and get out of the forest to find yourself in a town.")
+        time.sleep(3)
+        town()
+
+def deepForest():
+    clear();print("You are now in the deep forest, not much really. The name was just for show... but you do hear something whispering in the air..\nYou are barely able to discern what it says: \"Please... buy... dlc...\" odd...\n You can 'leave' or do 'nothing'")
+    moveset=["leave","nothing","do nothing"]; subset=["y","yes","n","no"]
+
+    move()
+    if usr_input=="leave":
+        print("\nYou leave, it's a boring place anyways, did you expect to see a dragon or something?")
+        time.sleep(3)
+        forest()
+    elif usr_input=="nothing" or usr_input=="do nothing":
+        print("\nYou sit down and do nothing\n This is peaceful...")
+        time.sleep(10)
+        sub_input=input("Do you wish to relax longer?")
+        while sub_input not in subset:
+            print(out["un"])
+            sub_input=input("Do you wish to realx longer? [Y/n]? ")
+        if sub_input=="y" or sub_input=="yes":
+            print("You continue enjoying the peace that the forest brings...")
+            time.sleep(10)
+            deepForest()
+        elif sub_input=="n" or sub_input=="no":
+            print("You get up")
+            time.sleep(2)
+            deepForest()
+
+
+def town():
+    clear();print("The small town looks like it's from the medieval ages... sheesh. You pass by many buildings, in which they all look like they were built in the 1600s\nMany people are even using horses to get around on these primative roads!\nThis doesn't seem right...\nYou can go West, South, or the 'Tavern'")
+    moveset=["west","south","tavern"]
+    
+    move()
+    if usr_input=="west":
+        print("You head west to the forest.")
+        time.sleep(2)
+        forest()
+    elif usr_input=="south":
+        print("You head down south, the town is a really odd contrast to the city...")
+        time.sleep(3)
+        downtown()
+    elif usr_input=="tavern":
+        print("You head to the tavern, an oddity in this 'modern' era based game.")
+        time.sleep(3)
+        tavern()
+
+def tavern():
+    clear();print("You waltz into the Tavern, Wow even the people here look like they're supposed to be from a different type of game.\nYou can buy a 'drink', fight or 'leave'")
+    moveset=["drink","fight","leave"]; subset=["A","G","W"]
+
+    move()
+    if usr_input=="drink":
+        clear();print("You take a look at the options...\n\tMenu:\n [A] Apple Juice\n [G] Grape Juice\n [U] Water\n [A] Unfinished...")
+        sub_input=input("What would you like to drink?");sub_input=sub_input.upper()
+
+        while sub_input not in subset:
+            print(out["un"])
+            sub_input=input("What would you like to drink?");sub_input=sub_input.upper()
+        if sub_input=="A" and money >= 5:
+            print("You order an Apple Juice for $5")
+            value=5;mon()
+        elif sub_input=="G" and money >= 9:
+            print("You buy Grape Juice for $9")
+            value=9;mon()
+        elif sub_input=="U" and money >= 4:
+            print("You buy a bottle o' Water for $4")
+            value=4;mon()
+    
+    elif usr_input=="fight":
+        print("You decide to randomly fight a stranger that is right next to you.")
+        stranger=True
+        fight()
+    elif usr_input=="leave":
+        print("You leave the Tavern.")
+        town()
+        
 
 def downtown():
     global usr_input,moveset,man
