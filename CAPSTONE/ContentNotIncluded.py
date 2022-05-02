@@ -140,7 +140,6 @@ def kitchen():
     move()
     if usr_input=="snack" or usr_input=="eat":
 
-#These SHITTY lines never fucking work as intended. holy fucking shit. I think they work now... On god if I find out later they're still broken
         if snack <=2:
             print("\nYou reach into your pantry and find a snack! You eat it.")
             time.sleep(3)
@@ -257,9 +256,6 @@ def suburbia():
         home_hallway()
 
 
-
-
-
 def will_house():
     print("You enter will's house, it's a nicely decorated cozy looking place.")
     moveset=["leave","stay"]
@@ -323,8 +319,8 @@ def bakesale():
 
 
 def forest():
-    clear();print("\"He was in the forest looking to see the trees, but none were there.\"\nOh. whoops, you are now in the forest ")
-    moveset["south","north","west","town","east"]
+    clear();print("\"He was in the forest looking to see the trees, but none were there.\"\nOh. whoops, you are now in the forest. it's spring this time of year and the flowers are blooming, althought you are alergic to pollen.")
+    moveset["south","north","west","town","east",]
 
 
 def downtown():
