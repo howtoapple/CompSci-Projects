@@ -1,6 +1,21 @@
 from turtle import *
+import random
 
-fd(250)
-bk(125)
-left(30)
-fd(150)
+"""
+for i in range(360):
+    forward(1)
+    left(1)
+
+"""
+
+
+def move():
+    num = random.randint(1, 100)
+    print(num)
+    if (num % 2) == 0:
+        print("Is Even")
+    else:
+        print("Is odd")
+
+
+move()
